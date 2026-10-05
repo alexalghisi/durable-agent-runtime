@@ -1,0 +1,29 @@
+{
+    "name": "durable-agent-runtime",
+    "version": "0.1.0",
+    "description": "Durable, resumable agent runs for a collaborative whiteboard, backed by MongoDB",
+    "type": "module",
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "start": "node dist/server.js",
+        "dev": "node --watch src/server.ts",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run",
+        "evals": "node evals/run.ts"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "fastify": "^5.12.5",
+        "mongodb": "^6.21.0",
+        "zod": "^3.25.76"
+    },
+    "devDependencies": {
+        "@types/node": "^22.20.5",
+        "mongodb-memory-server": "^10.4.3",
+        "typescript": "~5.9",
+        "vitest": "^3.2.7"
+    }
+}
