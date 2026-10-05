@@ -1,0 +1,20 @@
+services:
+    mongo:
+        image: mongo:7
+        healthcheck:
+            test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+            interval: 5s
+            retries: 10
+
+    runtime:
+        build: .
+        ports:
+            - "3000:3000"
+        environment:
+            MONGO_URL: mongodb://mongo:27017
+            AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+            AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-}
+            AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+        depends_on:
+            mongo:
+                condition: service_healthy
